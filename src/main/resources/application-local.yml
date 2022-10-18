@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3305/InitProject
+    username: hipo
+    password: 123456
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+decorator:
+  datasource:
+    p6spy:
+      enable-logging: true
+
+iam:
+  access-key: local
+  secret-key: local
+  region: local
+  bucket-name: local
+
+mod: local
+
+logTracer: true
