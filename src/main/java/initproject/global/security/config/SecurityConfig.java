@@ -50,7 +50,7 @@ public class SecurityConfig {
 
         http
                 .addFilter(new JwtAuthenticationFilter(authenticationManager, jwtProcessor))
-                .addFilter(new JwtAuthorizationFilter(jwtProcessor));
+                .addFilter(new JwtAuthorizationFilter(authenticationManager, jwtProcessor));
 
         http
                 .exceptionHandling()
