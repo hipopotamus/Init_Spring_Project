@@ -1,5 +1,6 @@
 package initproject.domain.account.entity;
 
+import initproject.global.auditing.BaseTime;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -9,7 +10,7 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor
-public class Account {
+public class Account extends BaseTime {
 
     @Id @GeneratedValue
     @Column(name = "account_id")
