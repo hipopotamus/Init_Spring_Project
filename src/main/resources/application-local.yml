@@ -13,12 +13,6 @@ decorator:
     p6spy:
       enable-logging: true
 
-iam:
-  access-key: local
-  secret-key: local
-  region: local
-  bucket-name: local
-
 mod: local
 
 logTracer: true

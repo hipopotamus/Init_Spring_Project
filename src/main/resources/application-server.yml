@@ -13,20 +13,6 @@ decorator:
     p6spy:
       enable-logging: true
 
-aws:
-  access-key: ${IAM_ACCESS_KEY}
-  secret-key: ${IAM_SECRET_KEY}
-  region: ${AWS_REGION}
-  bucket-name: ${BUCKET_NAME}
-
-
-cloud:
-  aws:
-    region:
-      static: ${AWS_REGION}
-    stack:
-      auto: false
-
 mod: server
 
 logTracer: true
