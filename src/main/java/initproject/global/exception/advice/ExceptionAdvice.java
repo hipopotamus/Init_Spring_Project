@@ -1,0 +1,29 @@
+package initproject.global.exception.advice;
+
+import initproject.global.exception.dto.ErrorResponse;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.net.BindException;
+
+@Component
+@RestControllerAdvice
+public class ExceptionAdvice {
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorResponse> basicExceptionHandler(Exception e) {
+        ErrorResponse errorResponse = new ErrorResponse(400, e.getClass().getSimpleName(), e.getMessage());
+
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorResponse> bindExceptionHandler(BindException e) {
+        ErrorResponse errorResponse = new ErrorResponse(400, e.getClass().getSimpleName(), "잘못된 입력값입니다.");
+
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+}
