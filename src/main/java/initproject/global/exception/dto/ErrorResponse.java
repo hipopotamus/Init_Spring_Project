@@ -8,6 +8,8 @@ import lombok.Data;
 public class ErrorResponse {
 
     private int state;
+
     private String exception;
+
     private String message;
 }

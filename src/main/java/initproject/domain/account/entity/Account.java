@@ -25,4 +25,9 @@ public class Account extends BaseTime {
     @Enumerated(EnumType.STRING)
     @ElementCollection
     private List<Role> roleList;
+
+    public Account(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
 }
