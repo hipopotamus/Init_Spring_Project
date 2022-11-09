@@ -3,16 +3,15 @@ package initproject.global.security.authentication;
 import initproject.domain.account.entity.Account;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.stream.Collectors;
 
 @Getter
 public class UserAccount implements UserDetails {
 
-    private Account account;
+    private final Account account;
 
     public UserAccount(Account account) {
         this.account = account;
@@ -21,9 +20,9 @@ public class UserAccount implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
-        return account.getRoleList().stream()
-                .map(role -> new SimpleGrantedAuthority(role.getRoleName()))
-                .collect(Collectors.toList());
+        Collection<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(() -> account.getRole().getRoleName());
+        return authorities;
     }
 
     @Override

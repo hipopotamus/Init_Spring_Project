@@ -1,11 +1,11 @@
 package initproject.global.config;
 
 import com.p6spy.engine.spy.P6SpyOptions;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import initproject.global.aop.logtracer.LogTrace;
 import initproject.global.aop.logtracer.LogTraceAspect;
 import initproject.global.p6spy.P6spySqlFormatConfiguration;
 import initproject.global.security.authentication.Principal;
-import initproject.global.security.authentication.UserAccount;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +14,8 @@ import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import javax.annotation.PostConstruct;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.Optional;
 
 @Configuration
@@ -21,6 +23,9 @@ import java.util.Optional;
 public class AppConfig {
 
     private final LogTrace logTrace;
+
+    @PersistenceContext
+    public EntityManager entityManager;
 
     @PostConstruct
     public void setLogMessageFormat() {
@@ -55,4 +60,10 @@ public class AppConfig {
     public LogTraceAspect logTraceAspect() {
         return new LogTraceAspect(logTrace);
     }
+
+    @Bean
+    public JPAQueryFactory jpaQueryFactory() {
+        return new JPAQueryFactory(entityManager);
+    }
+
 }

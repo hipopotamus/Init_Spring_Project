@@ -15,6 +15,7 @@ public class LogTraceAspect {
 
     @Around("execution(* initproject.domain..*(..))")
     public Object execute(ProceedingJoinPoint joinPoint) throws Throwable {
+
         TraceStatus status = null;
 
         try {

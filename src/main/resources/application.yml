@@ -14,9 +14,3 @@ spring:
     properties:
       hibernate:
         default_batch_fetch_size: 100
-
-jwt:
-  secret-key: ${JWT_SECRET_KEY}
-  expiration: ${JWT_EXPIRATION}
-  prefix: ${JWT_PREFIX}
-  header: ${JWT_HEADER}

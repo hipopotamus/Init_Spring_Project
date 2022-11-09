@@ -4,7 +4,6 @@ import initproject.global.security.authentication.UserAccount;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
-import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
@@ -66,9 +65,9 @@ public class JwtProcessor {
     }
 
     public String extractJwtToken(String jwtHeader) {
+
         int pos = jwtHeader.lastIndexOf(" ");
         return jwtHeader.substring(pos + 1);
-
     }
 
     public String getPrefix() {

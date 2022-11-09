@@ -2,7 +2,6 @@ package initproject.global.security.handler;
 
 import com.google.gson.Gson;
 import initproject.global.exception.dto.ErrorResponse;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 
@@ -18,7 +17,7 @@ public class AccountAuthenticationEntryPoint implements AuthenticationEntryPoint
                          AuthenticationException authException) throws IOException, ServletException {
 
         ErrorResponse unAuthException =
-                new ErrorResponse(HttpStatus.UNAUTHORIZED.value(), "UnAuthentication", "인증되지 않았습니다.");
+                new ErrorResponse("UnAuthentication", "인증되지 않았습니다.");
 
         String authenticationExJson = new Gson().toJson(unAuthException);
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);

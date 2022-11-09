@@ -14,7 +14,9 @@ public class LogTrace {
     private ThreadLocal<TraceStatus> traceStatusHolder = new ThreadLocal<>();
 
     public TraceStatus begin(String message) {
+
         syncTraceStatus(message);
+
         TraceStatus traceStatus = traceStatusHolder.get();
         traceStatus.setStartTimeMs(System.currentTimeMillis());
         log.info("[{}] {}{}", traceStatus.getId(), addSpace(START_PREFIX, traceStatus.getLevel()), message);
@@ -31,10 +33,11 @@ public class LogTrace {
     }
 
     private void complete(TraceStatus status, Exception e) {
+
         Long stopTimeMs = System.currentTimeMillis();
         float resultTimeS = (stopTimeMs - status.getStartTimeMsStack().pop()) / 1000F;
-        String traceId = status.getId();
 
+        String traceId = status.getId();
         if (e == null) {
             log.info("[{}] {}{} time = {}s", traceId, addSpace(COMPLETE_PREFIX, status.getLevel()),
                     status.getMessageStack().pop(), resultTimeS);
@@ -48,6 +51,7 @@ public class LogTrace {
     }
 
     private void releaseTraceStatus() {
+
         TraceStatus traceStatus = traceStatusHolder.get();
         if (traceStatus.isFirstLevel()) {
             traceStatusHolder.remove();
@@ -57,6 +61,7 @@ public class LogTrace {
     }
 
     private String addSpace(String prefix, int level) {
+
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < level; i++) {
             sb.append((i == level - 1) ? "|" + prefix : "|   ");
@@ -65,6 +70,7 @@ public class LogTrace {
     }
 
     private void syncTraceStatus(String message) {
+
         TraceStatus traceStatus = traceStatusHolder.get();
         if (traceStatus == null) {
             System.out.println();

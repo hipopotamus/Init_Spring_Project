@@ -7,7 +7,6 @@ import initproject.global.exception.dto.ErrorResponse;
 import initproject.global.security.authentication.UserAccount;
 import initproject.global.security.jwt.JwtProcessor;
 import lombok.SneakyThrows;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -51,6 +50,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response,
                                             FilterChain chain, Authentication authResult) throws IOException, ServletException {
+
         UserAccount userAccount = (UserAccount) authResult.getPrincipal();
 
         String jwtToken = jwtProcessor.createAuthJwtToken(userAccount);
@@ -63,7 +63,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                               AuthenticationException failed) throws IOException, ServletException {
 
         ErrorResponse authException =
-                new ErrorResponse(HttpStatus.UNAUTHORIZED.value(), "FailToAuthentication", "인증에 실패했습니다.");
+                new ErrorResponse("FailToAuthentication", "인증에 실패했습니다.");
 
         String authExceptionJson = new Gson().toJson(authException);
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);

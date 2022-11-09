@@ -23,6 +23,7 @@ public class TraceStatus {
     }
 
     public void beNextLevel(String message) {
+
         this.level++;
         this.messageStack.push(message);
     }

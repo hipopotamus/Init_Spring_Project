@@ -6,13 +6,17 @@ spring:
     password: ${RDS_PASSWORD}
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
 
 decorator:
   datasource:
     p6spy:
       enable-logging: true
 
-mod: server
+jwt:
+  secret-key: ${JWT_SECRET_KEY}
+  expiration: ${JWT_EXPIRATION}
+  prefix: ${JWT_PREFIX}
+  header: ${JWT_HEADER}
 
-logTracer: true
+mod: server

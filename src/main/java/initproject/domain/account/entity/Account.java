@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Getter
@@ -22,9 +21,7 @@ public class Account extends BaseTime {
 
     private String password;
 
-    @Enumerated(EnumType.STRING)
-    @ElementCollection
-    private List<Role> roleList;
+    private Role role;
 
     public Account(String email, String password) {
         this.email = email;
