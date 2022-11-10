@@ -2,12 +2,12 @@ package initproject.global.exception;
 
 import lombok.Getter;
 
-public class BusinessLoginException extends RuntimeException{
+public class BusinessLogicException extends RuntimeException{
 
     @Getter
     private final ExceptionCode exceptionCode;
 
-    public BusinessLoginException(ExceptionCode exceptionCode) {
+    public BusinessLogicException(ExceptionCode exceptionCode) {
         super(exceptionCode.getMessage());
         this.exceptionCode = exceptionCode;
     }

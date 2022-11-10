@@ -1,6 +1,6 @@
 package initproject.global.exception.advice;
 
-import initproject.global.exception.BusinessLoginException;
+import initproject.global.exception.BusinessLogicException;
 import initproject.global.exception.dto.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +22,7 @@ public class ExceptionAdvice {
     }
 
     @ExceptionHandler
-    public ResponseEntity<ErrorResponse> businessLoginExceptionHandler(BusinessLoginException e) {
+    public ResponseEntity<ErrorResponse> businessLoginExceptionHandler(BusinessLogicException e) {
 
         ErrorResponse errorResponse = new ErrorResponse(e.getClass().getSimpleName(), e.getExceptionCode().getMessage());
         return new ResponseEntity<>(errorResponse, HttpStatus.valueOf(e.getExceptionCode().getStatus()));
